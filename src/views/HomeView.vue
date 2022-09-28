@@ -3,30 +3,31 @@
     <h1>Home</h1>
     <p ref="p">My name is {{ name }} and my age is {{ age }}</p>
     <button @click="handleClick">Click Me</button>
+    <button @click="age++">Add Age</button>
+    <input type="text" v-model="name">
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 
 export default {
   name: 'HomeView',
   setup() {
-    console.log('setup')
-
-    const p = ref("hello") // Get Reference
-    console.log(p, p.value)
-
-    let name = "Mario"
-    let age = 30
+    const name = ref("Mario")
+    const age = ref(30)
 
     const handleClick = () => {
-      console.log(p, p.value)
-      p.value.classList.add("test")
-      p.value.textContent = "Hello There"
+      name.value = 'Luigi'
+      age.value = 45
     }
 
-    return { name, age, handleClick, p }
+    return { name, age, handleClick}
+  },
+  data() {
+    return {
+      score: 5
+    }
   }
 }
 </script>
